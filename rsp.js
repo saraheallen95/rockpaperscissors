@@ -118,23 +118,23 @@ function displayWinner () {
 
 
 const container = document.querySelector('#container');
-container.setAttribute("style", "height: 100%; margin: 0; display: flex;  background: #ffc0cb; justify-content: center; flex-direction: column; flex: 1;")
+container.setAttribute("style", "height: 100%; margin: 0; display: flex;  background: black; justify-content: center; flex-direction: column; flex: 1;")
 
 const title = document.createElement('div');
 container.classList.add('title');
 container.appendChild(title);
 title.textContent = "Sarah's Rock, Paper, Scissors Throwdown";
-title.setAttribute("style", "background-color: red; display: flex; justify-content: center; align-items: center; font-weight: extra bold; font-size: 32px; border: 5px;");
+title.setAttribute("style", "background-color: black; font-family: courier new, sans-serif; color: white; display: flex; justify-content: center; align-items: center; font-weight: extra bold; font-size: 32px; border: 5px; wrap: no-wrap;");
 
 const buttons = document.createElement('buttons');
 container.classList.add('buttons');
 container.appendChild(buttons);
-buttons.setAttribute("style", "justify-content: space-between; display: flex; margin: 16px; padding: 16px;");
+buttons.setAttribute("style", "justify-content: center; display: flex; margin: 16px; background: black;");
 
 let rock = document.createElement("button");
 rock.textContent = "Rock";
 buttons.classList.add("rock");
-rock.setAttribute("style", "text: black; background: white;");
+rock.setAttribute("style", "text: black; background: white; margin: 16px;");
 buttons.appendChild(rock);
 rock.addEventListener("click", function playRoundRock() {
 
@@ -180,7 +180,7 @@ rock.addEventListener("click", function playRoundRock() {
 let paper = document.createElement("button");
 buttons.classList.add("paper");
 paper.textContent = "Paper";
-paper.setAttribute("style", "text: black; background: white; margin: 16x;");
+paper.setAttribute("style", "text: black; background: white; margin: 16px;");
 /*paper.onclick = playRound(select('paper'), computerPlay()); */
 buttons.appendChild(paper);
 paper.addEventListener("click", function playRoundPaper() {
@@ -228,7 +228,7 @@ paper.addEventListener("click", function playRoundPaper() {
 let scissors = document.createElement("button");
 buttons.classList.add("scissors");
 scissors.textContent = "Scissors";
-scissors.setAttribute("style", "text: black; background: white;");
+scissors.setAttribute("style", "text: black; background: white; margin: 16px;");
 /*scissors.onclick = playRound(select('scissors'), computerPlay()); */
 buttons.appendChild(scissors);
 scissors.addEventListener("click", function playRoundScissors() {
@@ -275,7 +275,7 @@ scissors.addEventListener("click", function playRoundScissors() {
 
 const scoreboard = document.createElement('div');
 container.classList.add('scoreboard');
-scoreboard.setAttribute("style", "background: orange; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 16px;");
+scoreboard.setAttribute("style", "background: black; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 16px;");
 scoreboard.textContent = "Check your current status!";
 container.appendChild(scoreboard);
 
