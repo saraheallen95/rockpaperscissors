@@ -2,15 +2,38 @@
 <html>  
 <head>  
 <title>Sarah's Rock Paper Scissors Throwdown</title>  
+<link rel="stylesheet" href="style.css">
+
+<script type = "text/javascript" src="rsp.js" async></script>  
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
 </head>  
 
 <body>  
-<div><h1>Sarah's Rock Paper Scissors Throwdown</h1></div>
-<script src="rsp.js">  
 
-</script>  
 
-<input id="clickMe" type="button" value="click me" onclick="computerPlay();" />
+<div id="container">
+
+    <div id="title"><h1>Sarah's Rock Paper Scissors Throwdown</h1></div>
+ 
+    <div id="buttons">
+        <button id="rock" type="button" onclick="playRound(select('rock'), computerPlay())">Rock</button>
+        <button id="paper" type="button" onclick="playRound(select('paper'), computerPlay())">Paper</button>
+        <button id="scissors" type="button" onclick="playRound(select('scissors'), computerPlay())">Scissors</button>
+    </div>
+
+    <div id="scoreboard">
+        <p class="score">Computer Score</p>
+        <p class="score">Player Score</p>
+
+    </div>
+
+    <div id="message">
+        <p class="update">Start Round Status</p>
+        <p class="update">End Round Status</p>
+        <p class="update">Final Winner</p>
+    </div>
+</div>
 
 </body>  
 </html>  
