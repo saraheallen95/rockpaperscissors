@@ -17,20 +17,11 @@ function computerPlay () {
 
 function displayWinner () {
     
-    if ((computerWins > playerWins) && (computerWins >= 5)) {
+    if ((computerWins > playerWins) && (computerWins == 5)) {
         console.log ("GAME OVER! The computer won this round. Better luck next time!");
         return "GAME OVER! The computer won this round. Better luck next time!";
     }
-    else if ((playerWins > computerWins) && (playerWins >= 5)) {
-        console.log("GAME OVER! Congratulations, you beat the computer!"); 
-        const newRound = document.createElement("button");
-        scoreboard.classList.add('newRound');
-        newRound.setAttribute("style", "font-family: courier new, sans-serif; padding: 4px; margin: 16px");
-        newRound.innerText = "Play again!";
-        newRound.addEventListener("click", function reload() {
-            reload = location.reload();
-        }, false);
-        scoreboard.appendChild(newRound);
+    else if ((playerWins > computerWins) && (playerWins == 5)) {
         return "GAME OVER! Congratulations, you beat the computer!";
     }
 
@@ -40,7 +31,17 @@ function displayWinner () {
 }
 
  
-
+function createPlayAgainBtn () {
+    console.log("GAME OVER! Congratulations, you beat the computer!"); 
+    const newRound = document.createElement("button");
+    scoreboard.classList.add('newRound');
+    newRound.setAttribute("style", "font-family: courier new, sans-serif; padding: 4px; margin: 16px");
+    newRound.innerText = "Play again!";
+    newRound.addEventListener("click", function reload() {
+        reload = location.reload();
+    }, false);
+    scoreboard.appendChild(newRound);
+}
 
 
 /*begin manipulating dom elements here*/
@@ -70,11 +71,6 @@ rock.addEventListener("click", function playRoundRock() {
         endRoundUpdate = "";
         computerSelection = computerPlay();
     
-        if (currentWinnerScore == 5) {
-            displayWinner();
-            return;
-        }
-    
         startRoundUpdate = "";
         startRoundUpdate += "The computer chose " + computerSelection + ". You chose rock.";
     
@@ -99,6 +95,12 @@ rock.addEventListener("click", function playRoundRock() {
         }
     
         calculateScore();
+
+
+        if (currentWinnerScore == 5) {
+            displayWinner();
+            return;
+        }
     
         return;
 
@@ -117,11 +119,6 @@ paper.addEventListener("click", function playRoundPaper() {
     endRoundUpdate = "";
     computerSelection = computerPlay();
     console.log(computerWins + playerWins + " within playRound");
-
-    if (currentWinnerScore == 5) {
-        displayWinner();
-        return;
-    }
 
     startRoundUpdate = "";
     startRoundUpdate += "The computer chose " + computerSelection + ". You chose paper.";
@@ -146,6 +143,12 @@ paper.addEventListener("click", function playRoundPaper() {
 
     }
 
+
+    if (currentWinnerScore == 5) {
+        displayWinner();
+        return;
+    }
+
     calculateScore();
 
     return;
@@ -165,11 +168,6 @@ scissors.addEventListener("click", function playRoundScissors() {
     endRoundUpdate = "";
     computerSelection = computerPlay();
     console.log(computerWins + playerWins + " within playRound");
-
-    if (currentWinnerScore == 5) {
-        displayWinner();
-        return;
-    }
 
     startRoundUpdate = "";
     startRoundUpdate += "The computer chose " + computerSelection + ". You chose rock.";
@@ -195,6 +193,12 @@ scissors.addEventListener("click", function playRoundScissors() {
     }
 
    calculateScore();
+
+
+   if (currentWinnerScore == 5) {
+    displayWinner();
+    return;
+    }
 
     return;
 
@@ -236,6 +240,15 @@ winnerDisplay.textContent = "Pick a player!";
 winnerDisplay.setAttribute("style", "padding: 6px; font-family: courier new, sans-serif;")
 winnerDisplayContainer.appendChild(winnerDisplay);
 
+const newRound = document.createElement("button");
+    scoreboard.classList.add('newRound');
+    newRound.setAttribute("style", "font-family: courier new, sans-serif; padding: 4px; margin: 16px");
+    newRound.innerText = "Play again!";
+    newRound.addEventListener("click", function reload() {
+        reload = location.reload();
+    }, false);
+    scoreboard.appendChild(newRound);
+    
 function calculateScore () {
         
     compScore.textContent = "Computer Score: " + computerWins;
