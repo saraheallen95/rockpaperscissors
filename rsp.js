@@ -42,10 +42,54 @@ function createPlayAgainBtn () {
     }, false);
     scoreboard.appendChild(newRound);
 }
+/*
+function playRound(playerSelection) {
+
+    endRoundUpdate = "";
+    computerSelection = computerPlay();
+    console.log(computerWins + playerWins + " within playRound");
+
+    startRoundUpdate = "";
+    startRoundUpdate += "The computer chose " + computerSelection + ". You chose rock.";
+
+    if (currentWinnerScore == 5) {
+        return;
+        }
+
+    else if (computerSelection == playerSelection) {
+        currentWinnerScore = playerWins;
+        endRoundUpdate = "You tie! " + playerSelection + " ties with " + computerSelection + "!";
+    }
+    
+    else if (((computerSelection == "Scissors") && (playerSelection == "Rock")) || ((computerSelection == "Rock") && (playerSelection == "Paper")) || ((computerSelection == "Paper") && (playerSelection == "Scissors"))) {
+        playerWins += 1;
+        currentWinnerScore = playerWins;
+
+        endRoundUpdate = "You win! " + playerSelection + " beats " + computerSelection + "!";
+
+    }
+
+    else if (((computerSelection == "Scissors") && (playerSelection != "Rock")) || ((computerSelection == "Rock") && (playerSelection != "Paper")) || ((computerSelection == "Paper") && (playerSelection != "Scissors"))) {
+
+        computerWins += 1;
+        currentWinnerScore = computerWins;
+        endRoundUpdate += "Computer wins! " + computerSelection + "beats " + playerSelection + "!";
+
+    }
+
+   calculateScore();
 
 
-/*begin manipulating dom elements here*/
+   if (currentWinnerScore == 5) {
+    displayWinner();
+    return;
+    }
 
+    return;
+
+
+    }
+*/
 
 const container = document.querySelector('#container');
 container.setAttribute("style", "height: 100%; margin: 0; display: flex;  background: black; justify-content: center; flex-direction: column; flex: 1;")
@@ -67,7 +111,9 @@ buttons.classList.add("rock");
 rock.setAttribute("style", "font-family: courier new, sans-serif; text: black; background: white; margin: 16px;");
 buttons.appendChild(rock);
 rock.addEventListener("click", function playRoundRock() {
-
+    if (currentWinnerScore == 5) {
+        return;
+        }
         endRoundUpdate = "";
         computerSelection = computerPlay();
     
@@ -115,7 +161,9 @@ paper.setAttribute("style", "font-family: courier new, sans-serif; text: black; 
 /*paper.onclick = playRound(select('paper'), computerPlay()); */
 buttons.appendChild(paper);
 paper.addEventListener("click", function playRoundPaper() {
-
+    if (currentWinnerScore == 5) {
+        return;
+        }
     endRoundUpdate = "";
     computerSelection = computerPlay();
     console.log(computerWins + playerWins + " within playRound");
@@ -172,7 +220,11 @@ scissors.addEventListener("click", function playRoundScissors() {
     startRoundUpdate = "";
     startRoundUpdate += "The computer chose " + computerSelection + ". You chose rock.";
 
-    if (computerSelection == "Scissors") {
+    if (currentWinnerScore == 5) {
+        return;
+        }
+
+    else if (computerSelection == "Scissors") {
         currentWinnerScore = playerWins;
         endRoundUpdate = "You tie! Rock ties with rock!";
     }
@@ -248,7 +300,7 @@ const newRound = document.createElement("button");
         reload = location.reload();
     }, false);
     scoreboard.appendChild(newRound);
-    
+
 function calculateScore () {
         
     compScore.textContent = "Computer Score: " + computerWins;
