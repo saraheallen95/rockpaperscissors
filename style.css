@@ -1,9 +1,12 @@
-#container, html, body {
-    height: 100%;
+html, body {
     margin: 0;
+    padding: 0;
+    height: 100%;
 }
-
+/*
 #container {
+     height: 100%;
+    margin: 0;
     display: flex;
     background: #ffc0cb;
     justify-content: center;
@@ -23,7 +26,6 @@
     display: flex;
     justify-content: center;
     padding: 16px;
-    /*flex-direction: column;*/
 }
 
 #scoreboard {
@@ -49,3 +51,4 @@ p.update {
     margin: 16px;
     background: orange;
 }
+*/
