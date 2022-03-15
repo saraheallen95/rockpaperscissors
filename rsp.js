@@ -82,29 +82,27 @@ function playRound(playerSelection, score) {
 
     endRoundUpdate = "";
     computerSelection = computerPlay();
-    console.log(computerWins + playerWins + " within playRound");
 
     startRoundUpdate = "";
-    startRoundUpdate += "The computer chose " + computerSelection + ". You chose rock.";
 
     if (gameOver == true)
     {
         return;
     }
 
-    else if (currentWinnerScore == 5) {
-        createPlayAgainBtn();
-        gameOver = true;
-        return;
-     }
-
+    if (gameOver == false) {
+        gunshot.muted = false;
+        gunshot.play();
+    }
 
     else if (computerSelection == playerSelection) {
+    
         currentWinnerScore = playerWins;
         endRoundUpdate = "You tie! " + playerSelection + " ties with " + computerSelection + "!";
     }
     
     else if (((computerSelection == "Scissors") && (playerSelection == "Rock")) || ((computerSelection == "Rock") && (playerSelection == "Paper")) || ((computerSelection == "Paper") && (playerSelection == "Scissors"))) {
+
         playerWins += 1;
         currentWinnerScore = playerWins;
 
@@ -113,7 +111,7 @@ function playRound(playerSelection, score) {
     }
 
     else if (((computerSelection == "Scissors") && (playerSelection != "Rock")) || ((computerSelection == "Rock") && (playerSelection != "Paper")) || ((computerSelection == "Paper") && (playerSelection != "Scissors"))) {
-
+  
         computerWins += 1;
         currentWinnerScore = computerWins;
         endRoundUpdate += "Computer wins! " + computerSelection + "beats " + playerSelection + "!";
@@ -125,7 +123,9 @@ function playRound(playerSelection, score) {
     if (currentWinnerScore == 5) {
         displayWinner();
         gameOver = true;
+        createPlayAgainBtn();
         message.textContent = setMessage(); 
+       
         return;
     }
     
@@ -156,6 +156,24 @@ body.setAttribute("style", "margin: 0; padding: 0; height: 100%; color: black;")
 const container = document.querySelector('#container');
 container.setAttribute("style", "height: 100%; margin: 0; display: flex;  background: black; justify-content: center; flex-direction: column; flex: 1; align-items: center;")
 body.appendChild(container);
+
+let westerntheme = document.createElement("AUDIO");
+document.body.appendChild(westerntheme);
+westerntheme.src = "./westerntheme.wav"
+westerntheme.autoplay = true;
+westerntheme.muted = true;
+
+let gunshot = document.createElement("AUDIO");
+document.body.appendChild(gunshot);
+gunshot.src = "./gunshot.wav"
+gunshot.muted = true;
+gunshot.autoplay = true;
+
+document.body.addEventListener("click", function () {
+    westerntheme.muted = false;
+    westerntheme.play();
+    westerntheme.loop = true;
+})
 
 const cowboyhat = document.createElement('img')
 cowboyhat.src  = "./cowboyhat.png";
