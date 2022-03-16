@@ -32,7 +32,7 @@ gif.onmouseover = function () {
 
     if (titleExists == true) {
         container.appendChild(banner);
-        banner.textContent = "Ready for a good old fashioned cowboy shootout...rock paper scissors style?";
+        banner.textContent = "Ready for a good old fashioned cowboy shootout...rock paper scissors style? Click the saloon doors to enter!";
         banner.setAttribute("style", "background-color: black; margin: 24px; text-align: center; font-family: courier new, sans-serif; color: white; display: flex; justify-content: center; align-items: center; font-weight: extra bold; font-size: 32px; border: 5px; wrap: no-wrap;");
     }
     
@@ -76,18 +76,17 @@ function computerPlay () {
 function displayWinner () {
     
     if ((computerWins > playerWins) && (computerWins == 5)) {
-        console.log ("GAME OVER!");
 
         winnerDisplayContainer.style.background = "#c1bab5";
         winnerDisplay.style.background = "#c1bab5";
-        return "GAME OVER!";
+        return "GAME OVER, LOSER!";
     }
     else if ((playerWins > computerWins) && (playerWins == 5)) {
 
         winnerDisplayContainer.style.background = "#c1bab5";
         winnerDisplay.style.background = "#c1bab5";
 
-        return "GAME OVER!";
+        return "VICTORY IS YOURS!";
     }
 
     else return;
@@ -253,8 +252,6 @@ document.body.addEventListener("click", function () {
 
 
 
-
-
 const title = document.createElement('div');
 container.classList.add('title');
 container.appendChild(title);
@@ -272,6 +269,7 @@ cowboyhat.style.transform = "rotate(40deg)";
 container.classList.add('cowboyhat');
 container.appendChild(cowboyhat);
 
+
 const messageboard = document.createElement("div");
 container.classList.add("messageboard");
 messageboard.setAttribute("style", "background-color: black; text-align: center; display: flex; justify-content: center; margin-top: 16px;")
@@ -283,6 +281,130 @@ message.setAttribute("style", "display: flex; margin-bottom: 40px; justify-conte
 message.textContent = "The throwdown begins...";
 messageboard.appendChild(message);
 
+const arena = document.createElement('div');
+container.classList.add('arena');
+container.appendChild(arena);
+arena.setAttribute("style", "padding-bottom: 16px; background-color: black; text-align: center; display: flex; justify-content: center; margin-top: 20px; margin-left: 16px; margin-right: 16px;")
+
+const arenaLeft = document.createElement('div');
+arenaLeft.setAttribute("style", "display: flex; flex-direction: column");
+arena.classList.add("arenaLeft");
+arena.appendChild(arenaLeft);
+
+const arenaCenter = document.createElement('div');
+arenaCenter.setAttribute("style", "display: flex; flex-direction: column; font-size: 64px; color: white; margin-top: 16px; padding-bottom: 16px;");
+arena.classList.add("arenaCenter");
+arenaCenter.innerText = "vs.";
+arena.appendChild(arenaCenter);
+
+const arenaRight = document.createElement('div');
+arenaRight.setAttribute("style", "display: flex; flex-direction: column");
+arena.classList.add("arenaRight");
+arena.appendChild(arenaRight);
+
+let rock = document.createElement("img");
+rock.src  = "./rock.png";
+rock.style.width = "100px";
+rock.style.height = "auto";
+rock.style.padding = "16px";
+rock.style.maxHeight = "100%";
+
+let paper = document.createElement("img");
+paper.src = "./paper.png";
+paper.style.width = "100px";
+paper.style.maxHeight = "100%";
+paper.style.height = "auto";
+paper.style.padding = "16px";
+
+let scissors = document.createElement("img");
+scissors.src = "./scissors.png";
+scissors.style.width = "100px";
+scissors.style.height = "auto";
+scissors.style.padding = "16px";
+scissors.style.maxHeight = "100%";
+
+function arenaFillLeft () {
+
+    console.log(playerSelection);
+    if (playerSelection == "Rock") {
+        paper.remove();
+        scissors.remove()
+        arenaLeft.classList.add("rock");
+        arenaLeft.appendChild(rock);
+    }
+
+    else if (playerSelection == "Paper") {
+        arena.classList.add("paper");
+        scissors.remove();
+        rock.remove();
+        arenaLeft.classList.add("paper");
+        arenaLeft.appendChild(paper);
+    }
+
+    else if (playerSelection == "Scissors" ) {
+        arena.classList.add("scissors");
+        rock.remove();
+        paper.remove();
+        arenaLeft.classList.add("scissors");
+        arenaLeft.appendChild(scissors);
+    }
+
+    return;
+
+
+}
+
+let rockRight = document.createElement("img");
+rockRight.src  = "./rock.png";
+rockRight.style.width = "100px";
+rockRight.style.height = "auto";
+rockRight.style.padding = "16px";
+rockRight.style.maxHeight = "100%";
+
+let paperRight = document.createElement("img");
+paperRight.src = "./paper.png";
+paperRight.style.width = "100px";
+paperRight.style.maxHeight = "100%";
+paperRight.style.height = "auto";
+paperRight.style.padding = "16px";
+
+let scissorsRight = document.createElement("img");
+scissorsRight.src = "./scissors.png";
+scissorsRight.style.width = "100px";
+scissorsRight.style.height = "auto";
+scissorsRight.style.padding = "16px";
+scissorsRight.style.maxHeight = "100%";
+
+function arenaFillRight () {
+
+    if (computerSelection == "Rock") {
+        paperRight.remove();
+        scissorsRight.remove()
+        arenaRight.classList.add("rockRight");
+        arenaRight.appendChild(rockRight);
+    }
+
+    else if (computerSelection == "Paper") {
+        arena.classList.add("paperRight");
+        scissorsRight.remove();
+        rockRight.remove();
+        arenaRight.classList.add("paperRight");
+        arenaRight.appendChild(paperRight);
+    }
+
+    else if (computerSelection == "Scissors" ) {
+        arena.classList.add("scissorsRight");
+        rockRight.remove();
+        paperRight.remove();
+        arenaRight.classList.add("scissorsRight");
+        arenaRight.appendChild(scissorsRight);
+    }
+
+    return;
+
+}
+
+
 const scoreboard = document.createElement('div');
 container.classList.add('scoreboard');
 scoreboard.setAttribute("style", "font-family: courier new, sans-serif; background: black; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 16px; padding-top: 0px;");
@@ -293,11 +415,6 @@ scoreboard.classList.add('scores');
 scores.setAttribute("style", "display: flex; justify-content: center;");
 scoreboard.appendChild(scores);
 
-let compScore = document.createElement('p');
-scores.classList.add('compScore');
-compScore.setAttribute("style", "font-family: courier new, sans-serif; background: #e4743c; display: flex; justify-content: center; margin: 16px; padding: 16px;");
-compScore.textContent = "Computer Score: " + computerWins;
-scores.appendChild(compScore);
 
 let myScore = document.createElement('p');
 scores.classList.add('myScore');
@@ -306,14 +423,20 @@ myScore.setAttribute("style", "font-family: courier new, sans-serif; background:
 scores.appendChild(myScore);
 
 
+let compScore = document.createElement('p');
+scores.classList.add('compScore');
+compScore.setAttribute("style", "font-family: courier new, sans-serif; background: #e4743c; display: flex; justify-content: center; margin: 16px; padding: 16px;");
+compScore.textContent = "Computer Score: " + computerWins;
+scores.appendChild(compScore);
+
 const winnerDisplayContainer = document.createElement('div');
 scoreboard.classList.add('winnerDisplayContainer');
-winnerDisplayContainer.setAttribute("style", "font-family: courier new, sans-serif; max-height: 100%; background: #e4743c; padding: 5x; border: 6px black solid; ");
+winnerDisplayContainer.setAttribute("style", "font-family: courier new, sans-serif; text-align: center; max-height: 100%; background: #e4743c; padding: 5x; border: 6px black solid; ");
 scoreboard.appendChild(winnerDisplayContainer);
 
 const winnerDisplay = document.createElement('p');
 winnerDisplayContainer.classList.add("winnerDisplay");
-winnerDisplay.setAttribute("style", "font-family: courier new, sans-serif; margin: 0; font-size: 64px; max-height: 100%;")
+winnerDisplay.setAttribute("style", "font-family: courier new, sans-serif; text-align: center; margin: 0; font-size: 64px; max-height: 100%;")
 winnerDisplayContainer.appendChild(winnerDisplay);
 
 const buttons = document.createElement('buttons');
@@ -321,36 +444,47 @@ container.classList.add('buttons');
 container.appendChild(buttons);
 buttons.setAttribute("style", "font-family: courier new, sans-serif; justify-content: center; display: flex; margin-bottom: 64px; background: black;");
 
-let rock = document.createElement("img");
-rock.src  = "./rock.png";
-rock.style.width = "100px";
-rock.style.height = "auto";
-rock.style.padding = "16px";
-rock.style.maxHeight = "100%";
-buttons.classList.add("rock");
-buttons.appendChild(rock);
-rock.onclick = function() { playRound("Rock", compScore)};
+let rockButton = new Image();
+rockButton.src  = "./rock.png";
+rockButton.style.width = "100px";
+rockButton.style.height = "auto";
+rockButton.style.padding = "16px";
+rockButton.style.maxHeight = "100%";
+buttons.classList.add("rockButton");
+buttons.appendChild(rockButton);
+rockButton.onclick = function() {
+    playRound("Rock", compScore)
+    playerSelection = "Rock";
+    arenaFillLeft();
+    arenaFillRight();
+};
     
 
-let paper = document.createElement("img");
-buttons.classList.add("paper");
-paper.src = "./paper.png";
-paper.style.width = "100px";
-paper.style.maxHeight = "100%";
-paper.style.height = "auto";
-paper.style.padding = "16px";
-buttons.appendChild(paper);
-paper.onclick = function () {playRound("Paper", compScore)};
+let paperButton = new Image();
+paperButton.src = "./paper.png";
+paperButton.style.width = "100px";
+paperButton.style.maxHeight = "100%";
+paperButton.style.height = "auto";
+paperButton.style.padding = "16px";
+buttons.classList.add("paperButton");
+buttons.appendChild(paperButton);
+paperButton.onclick = function () {playRound("Paper", compScore)
+playerSelection = "Paper";
+arenaFillLeft();
+arenaFillRight();
+};
 
-
-let scissors = document.createElement("img");
-buttons.classList.add("scissors");
-scissors.src = "./scissors.png";
-scissors.style.width = "100px";
-scissors.style.height = "auto";
-scissors.style.padding = "16px";
-scissors.style.maxHeight = "100%";
-buttons.appendChild(scissors);
-scissors.onclick = function () {playRound("Scissors", compScore)};
-
+let scissorsButton = new Image();
+scissorsButton.src = "./scissors.png";
+scissorsButton.style.width = "100px";
+scissorsButton.style.height = "auto";
+scissorsButton.style.padding = "16px";
+scissorsButton.style.maxHeight = "100%";
+buttons.classList.add("scissorsButton");
+buttons.appendChild(scissorsButton);
+scissorsButton.onclick = function () {playRound("Scissors", compScore)
+playerSelection = "Scissors";
+arenaFillLeft();
+arenaFillRight();
+}
 }
